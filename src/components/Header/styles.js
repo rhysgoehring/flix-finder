@@ -1,5 +1,4 @@
 import styled from "styled-components/macro";
-import MaterialIcon from "material-icons-react";
 import { elevation } from "../../utilities/styles";
 import { Black } from "../../utilities/styles/Colors";
 
@@ -21,10 +20,4 @@ const Logo = styled.h1`
   text-align: center;
 `;
 
-const MenuIcon = styled(MaterialIcon)`
-  align-self: flex-end;
-
-  text-align: center;
-`;
-
-export { HeaderContainer, Logo, MenuIcon };
+export { HeaderContainer, Logo };
