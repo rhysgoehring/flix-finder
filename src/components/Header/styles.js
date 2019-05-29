@@ -20,4 +20,8 @@ const Logo = styled.h1`
   text-align: center;
 `;
 
-export { HeaderContainer, Logo };
+const IconWrapper = styled.div`
+  z-index: 15;
+`;
+
+export { HeaderContainer, Logo, IconWrapper };
