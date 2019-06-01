@@ -11,6 +11,10 @@ import {
 import { useTransition, animated } from "react-spring";
 import styled from "styled-components";
 
+import { Grey800 } from "./utilities/styles/Colors";
+
+import Home from "./pages/Home";
+
 const StyledLink = styled(Link)`
   display: block;
   text-align: left;
@@ -21,7 +25,7 @@ const StyledLink = styled(Link)`
   border-bottom: solid 4px transparent;
 
   &:hover {
-    border-bottom: solid 4px teal;
+    border-bottom: solid 4px ${Grey800};
   }
 `;
 
@@ -29,6 +33,9 @@ const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
 `;
 
 const NavLink = props => {
@@ -45,13 +52,6 @@ const useRouter = () => {
   return useContext(__RouterContext);
 };
 
-const One = () => {
-  return (
-    <div>
-      <h1>Home</h1>
-    </div>
-  );
-};
 const Two = () => {
   return (
     <div>
@@ -85,7 +85,7 @@ const Main = () => {
   return transitions.map(({ item, props: transitonStyle, key }) => (
     <animated.div key={key} style={transitonStyle}>
       <Switch location={item}>
-        <Route exact path="/" component={One} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/two" component={Two} />
         <Route exact path="/three" component={Three} />
       </Switch>
@@ -106,7 +106,7 @@ const NavRoutes = ({ onClick }) => {
   return (
     <NavList>
       <NavLink to="/" onClick={onClick}>
-        One
+        Home
       </NavLink>
       <NavLink to="/two" onClick={onClick}>
         Two

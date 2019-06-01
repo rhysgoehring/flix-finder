@@ -1,14 +1,14 @@
 import React from "react";
-import NavWrapper from "./styles";
+import { NavWrapper, NavContainer } from "./styles";
 import { NavRoutes } from "../../Routes";
 
 const Nav = ({ style, onNavLinkClick }) => {
   return (
-    <NavWrapper style={style}>
-      <nav>
+    <NavContainer style={style}>
+      <NavWrapper>
         <NavRoutes onClick={onNavLinkClick} />
-      </nav>
-    </NavWrapper>
+      </NavWrapper>
+    </NavContainer>
   );
 };
 

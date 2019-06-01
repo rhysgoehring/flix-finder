@@ -20,6 +20,10 @@ const GlobalStyles = createGlobalStyle`
     background: ${Gunmetal};
     color: white;
   }
+
+  main {
+    padding: 2rem;
+  }
 `;
 
 export default GlobalStyles;
