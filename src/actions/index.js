@@ -50,7 +50,6 @@ const fetchPopularTV = () => async dispatch => {
     });
 
     return topPopularTV;
-
   } catch (error) {
     console.error("fetchMostPopularTMDB shows redux action error", error);
   }
