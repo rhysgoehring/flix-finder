@@ -12,25 +12,48 @@ import {
   utellyConfig
 } from "./util/axios_configs";
 
-const fetchMostPopularTMDB = () => async dispatch => {
+const fetchPopularMovies = () => async dispatch => {
   try {
-    const response = await axios.get(
+    const movieResponse = await axios.get(
       `https://api.themoviedb.org/3/discover/movie?api_key=${
         process.env.REACT_APP_TMDB_KEY
       }&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_original_language=en`
     );
-    console.log("response", response);
-    const mostPopularMovies = response.data.results;
-    const top5PopularMovies = mostPopularMovies.slice(0, 5);
-    console.log("most popular movies", top5PopularMovies);
+    const mostPopularMovies = movieResponse.data.results;
+    const topPopularMovies = mostPopularMovies.slice(0, 7);
+
     dispatch({
       type: FETCH_MOST_POPULAR_MOVIES_TMDB,
       mostPopularMovies
     });
-    return top5PopularMovies;
+
+    return topPopularMovies;
   } catch (error) {
-    console.error("fetchMostPopularTMDB redux action error", error);
+    console.error("fetchMostPopularTMDB movies redux action error", error);
   }
 };
 
-export { fetchMostPopularTMDB };
+const fetchPopularTV = () => async dispatch => {
+  try {
+    const showResponse = await axios.get(
+      `https://api.themoviedb.org/3/discover/tv?api_key=${
+        process.env.REACT_APP_TMDB_KEY
+      }&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FDenver&include_null_first_air_dates=false&with_original_language=en`
+    );
+
+    const mostPopularTV = showResponse.data.results;
+    const topPopularTV = mostPopularTV.slice(0, 7);
+
+    dispatch({
+      type: FETCH_MOST_POPULAR_TV_TMDB,
+      mostPopularTV
+    });
+
+    return topPopularTV;
+
+  } catch (error) {
+    console.error("fetchMostPopularTMDB shows redux action error", error);
+  }
+};
+
+export { fetchPopularMovies, fetchPopularTV };

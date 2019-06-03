@@ -4,7 +4,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  tmdbPopularMovies: [],
+  tmdbPopular: [],
   netflixNewReleases: []
 };
 
@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
     case FETCH_MOST_POPULAR_MOVIES_TMDB:
       return {
         ...state,
-        tmdbPopularMovies: action.mostPopularMovies
+        tmdbPopular: action.mostPopularMovies
       };
     default:
       return {
