@@ -1,9 +1,8 @@
 import axios from "axios";
 import {
   FETCH_MOST_POPULAR_MOVIES_TMDB,
-  FETCH_NEW_MOVIES_ON_NETFLIX,
-  FETCH_MOST_POPULAR_TV_TMDB,
-  FETCH_NEW_TV_ON_NETFLIX
+  FETCH_NEW_NETFLIX_RELEASES,
+  FETCH_MOST_POPULAR_TV_TMDB
 } from "./types";
 import {
   netflixConfig,
@@ -55,4 +54,40 @@ const fetchPopularTV = () => async dispatch => {
   }
 };
 
-export { fetchPopularMovies, fetchPopularTV };
+const fetchNewNetflixReleases = () => async dispatch => {
+  try {
+    const response = await axios.get(
+      "https://unogs-unogs-v1.p.rapidapi.com/aaapi.cgi?q=get:new7:US&p=1&t=ns&st=adv",
+      netflixConfig
+    );
+
+    const allReleases = response.data.ITEMS;
+    const allNewMovies = allReleases.filter(
+      release => release.type === "movie"
+    );
+
+    const allNewShows = allReleases.filter(
+      release => release.type === "series"
+    );
+
+    const newNetflixShows = allNewShows.slice(0, 7);
+    const newNetflixMovies = allNewMovies.slice(0, 7);
+
+    // console.log("allNewMovies", allNewMovies);
+    // console.log("allNewShows", allNewShows);
+
+    dispatch({
+      type: FETCH_NEW_NETFLIX_RELEASES,
+      allNewMovies,
+      allNewShows
+    });
+    return {
+      newNetflixMovies,
+      newNetflixShows
+    };
+  } catch (error) {
+    console.error("fetchNewNetflixReleases redux error", error);
+  }
+};
+
+export { fetchPopularMovies, fetchPopularTV, fetchNewNetflixReleases };

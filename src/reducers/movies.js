@@ -1,7 +1,4 @@
-import {
-  FETCH_MOST_POPULAR_MOVIES_TMDB,
-  FETCH_NEW_MOVIES_ON_NETFLIX
-} from "../actions/types";
+import { FETCH_MOST_POPULAR_MOVIES_TMDB } from "../actions/types";
 
 const initialState = {
   tmdbPopular: [],

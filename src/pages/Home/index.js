@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { Trail, animated, Transition } from "react-spring/renderprops";
 import { connect } from "react-redux";
-import { fetchPopularMovies, fetchPopularTV } from "../../actions";
+import {
+  fetchPopularMovies,
+  fetchPopularTV,
+  fetchNewNetflixReleases
+} from "../../actions";
 import { MainContainer } from "../../utilities/styles/Layout";
 import {
   RowContainer,
@@ -138,13 +142,16 @@ class Home extends Component {
 
     this.state = {
       popularMovies: [],
-      popularTV: []
+      popularTV: [],
+      newNetflixShows: [],
+      newNetflixMovies: []
     };
   }
 
   componentDidMount() {
     this.getPopularMovies();
     this.getPopularTv();
+    this.getNewNetflixReleases();
   }
 
   getPopularMovies = async () => {
@@ -159,6 +166,16 @@ class Home extends Component {
 
     this.setState({ popularTV });
     // this.setState({ popularTV: SAMPLE_DATA });
+  };
+
+  getNewNetflixReleases = async () => {
+    const {
+      newNetflixMovies,
+      newNetflixShows
+    } = await this.props.fetchNewNetflixReleases();
+    console.log("newMovies: ", newNetflixMovies);
+    console.log("newShows", newNetflixShows);
+    this.setState({ newNetflixMovies, newNetflixShows });
   };
 
   render() {
@@ -212,6 +229,52 @@ class Home extends Component {
               )}
             </Trail>
           </Top5Row>
+          <Top5Row
+            title="New Netflix Movies"
+            onClick={() => console.log("View All TV Pressed")}
+          >
+            <Trail
+              native
+              items={this.state.newNetflixMovies}
+              from={{ opacity: 0, x: -500 }}
+              to={{ opacity: 1, x: 0 }}
+              keys={this.state.newNetflixMovies.map(item => item.imdbid)}
+            >
+              {item => ({ x, opacity }) => (
+                <animated.div
+                  style={{
+                    opacity,
+                    transform: x.interpolate(x1 => `translate3d(${x1}%, 0, 0)`)
+                  }}
+                >
+                  <Thumbnail netflix media={item} />
+                </animated.div>
+              )}
+            </Trail>
+          </Top5Row>
+          <Top5Row
+            title="New Netflix Shows"
+            onClick={() => console.log("View All TV Pressed")}
+          >
+            <Trail
+              native
+              items={this.state.newNetflixShows}
+              from={{ opacity: 0, x: -500 }}
+              to={{ opacity: 1, x: 0 }}
+              keys={this.state.newNetflixShows.map(item => item.imdbid ? item.imdbid : item.netflixid)}
+            >
+              {item => ({ x, opacity }) => (
+                <animated.div
+                  style={{
+                    opacity,
+                    transform: x.interpolate(x1 => `translate3d(${x1}%, 0, 0)`)
+                  }}
+                >
+                  <Thumbnail netflix media={item} />
+                </animated.div>
+              )}
+            </Trail>
+          </Top5Row>
         </MainContainer>
       </React.Fragment>
     );
@@ -227,5 +290,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchPopularMovies, fetchPopularTV }
+  { fetchPopularMovies, fetchPopularTV, fetchNewNetflixReleases }
 )(Home);

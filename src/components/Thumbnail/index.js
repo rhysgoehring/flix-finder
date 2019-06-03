@@ -8,6 +8,9 @@ const POSTER_PATH = "http://image.tmdb.org/t/p/w154";
 export const Poster = styled.img`
   box-shadow: 0 0 35px black;
   padding: 0 1rem;
+  height: 231px;
+  width: 154px;
+  object-fit: cover;
 `;
 
 // const Thumbnail = ({ movie }) => (
@@ -18,8 +21,11 @@ export const Poster = styled.img`
 //   </Link>
 // );
 
-const Thumbnail = ({ media }) => (
-  <Poster alt={media.title} src={`${POSTER_PATH}/${media.poster_path}`} />
+const Thumbnail = ({ media, netflix }) => (
+  <Poster
+    alt={media.title}
+    src={netflix ? media.image : `${POSTER_PATH}/${media.poster_path}`}
+  />
 );
 
 export default Thumbnail;

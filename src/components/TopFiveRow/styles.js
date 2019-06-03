@@ -6,6 +6,7 @@ const Top5Container = styled.div`
   align-items: space-between;
   justify-content: center;
   padding: 0 2rem;
+  margin: 2rem 0;
   position: relative;
 
   border: 2px solid white;
