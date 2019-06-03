@@ -69,8 +69,8 @@ class Home extends Component {
             <Trail
               native
               items={this.state.popularMovies}
-              from={{ opacity: 0, x: -500, transform: "scale(0)" }}
-              to={{ opacity: 1, x: 0, transform: "scale(1)" }}
+              from={{ opacity: 0, x: -500 }}
+              to={{ opacity: 1, x: 0 }}
               keys={this.state.popularMovies.map(item => item.id)}
             >
               {item => ({ x, opacity }) => (
