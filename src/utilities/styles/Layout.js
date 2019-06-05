@@ -8,8 +8,13 @@ const MainContainer = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-
-  border: 2px solid greenyellow;
 `;
 
-export { MainContainer };
+const ReleaseGrid = styled.div`
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 1rem;
+  grid-column-gap: 2rem;
+`;
+export { MainContainer, ReleaseGrid };

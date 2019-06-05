@@ -100,7 +100,7 @@ class Home extends Component {
                     transform: x.interpolate(x1 => `translate3d(${x1}%, 0, 0)`)
                   }}
                 >
-                  <Thumbnail media={item} />
+                  <Thumbnail show media={item} />
                 </animated.div>
               )}
             </Trail>

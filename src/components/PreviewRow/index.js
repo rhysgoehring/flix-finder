@@ -5,6 +5,7 @@ import {
   PreviewHeader,
   ViewMoreButton
 } from "./styles";
+import { ReleaseGrid } from "../../utilities/styles/Layout";
 
 const PreviewRow = ({ title, children, onClick }) => {
   return (
@@ -13,7 +14,7 @@ const PreviewRow = ({ title, children, onClick }) => {
         <h1>{title}</h1>
         <ViewMoreButton onClick={onClick}>View All</ViewMoreButton>
       </PreviewHeader>
-      <RowContainer>{children}</RowContainer>
+      <ReleaseGrid>{children}</ReleaseGrid>
     </PreviewContainer>
   );
 };

@@ -14,6 +14,7 @@ import styled from "styled-components";
 import { Grey800 } from "./utilities/styles/Colors";
 
 import Home from "./pages/Home";
+import ReleaseDetails from "./pages/ReleaseDetails";
 
 const StyledLink = styled(Link)`
   display: block;
@@ -86,6 +87,8 @@ const Main = () => {
     <animated.div key={key} style={transitonStyle}>
       <Switch location={item}>
         <Route exact path="/" component={Home} />
+        <Route exact path="/movie/:id" component={ReleaseDetails} />
+        <Route exact path="/show/:id" component={ReleaseDetails} />
         <Route exact path="/two" component={Two} />
         <Route exact path="/three" component={Three} />
       </Switch>

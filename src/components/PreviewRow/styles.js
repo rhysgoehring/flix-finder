@@ -1,4 +1,6 @@
 import styled from "styled-components/macro";
+import { Black } from "../../utilities/styles/Colors";
+import { elevation } from "../../utilities/styles";
 
 const PreviewContainer = styled.div`
   display: flex;
@@ -8,8 +10,6 @@ const PreviewContainer = styled.div`
   padding: 0 2rem;
   margin: 2rem 0;
   position: relative;
-
-  border: 2px solid white;
 `;
 
 const PreviewHeader = styled.div`
@@ -20,13 +20,23 @@ const PreviewHeader = styled.div`
 `;
 
 const ViewMoreButton = styled.button`
+  ${elevation[3]};
   background: transparent;
   text-align: center;
   color: white;
   width: 10rem;
   height: 3.5rem;
+  border-radius: 0.5rem;
   font-size: 1.8rem;
   align-self: center;
+  transition: all 0.9s ease;
+  z-index: 10;
+
+  &:hover {
+    ${elevation[1]};
+    background: white;
+    color: ${Black};
+  }
 `;
 
 const RowContainer = styled.div`
@@ -35,8 +45,6 @@ const RowContainer = styled.div`
   align-items: center;
   flex-wrap: none;
   position: relative;
-
-  border: 1px solid red;
 `;
 
 export { RowContainer, PreviewContainer, PreviewHeader, ViewMoreButton };
