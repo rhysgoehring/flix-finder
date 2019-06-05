@@ -1,24 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Trail, animated, Transition } from "react-spring/renderprops";
-import { fetchPopularMovies } from "../../actions";
+import { fetchPopularTV } from "../../actions";
 import { ReleaseGrid, MainContainer } from "../../utilities/styles/Layout";
 import Thumbnail from "../../components/Thumbnail";
 
-class PopularMovies extends Component {
+class PopularTV extends Component {
   componentDidMount() {
-    if (this.props.movies.length === 0) {
-      this.props.fetchPopularMovies();
+    if (this.props.tv.length === 0) {
+      this.props.fetchPopularTV();
     }
   }
 
   render() {
     return (
       <MainContainer>
-        <h1 style={{ color: "white" }}>Popular Movies</h1>
+        <h1 style={{ color: "white" }}>Popular Shows</h1>
         <ReleaseGrid allReleases>
-          {this.props.movies.map(movie => (
-            <Thumbnail media={movie} />
+          {this.props.tv.map(tv => (
+            <Thumbnail show media={tv} />
           ))}
         </ReleaseGrid>
       </MainContainer>
@@ -28,11 +27,10 @@ class PopularMovies extends Component {
 
 const mapStateToProps = state => {
   return {
-    movies: state.movies.tmdbPopular,
+    tv: state.tv.tmdbPopular
   };
 };
-
 export default connect(
   mapStateToProps,
-  { fetchPopularMovies }
-)(PopularMovies);
+  { fetchPopularTV }
+)(PopularTV);

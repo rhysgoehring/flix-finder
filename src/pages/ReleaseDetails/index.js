@@ -20,16 +20,23 @@ class ReleaseDetails extends PureComponent {
     this.getReleaseDetails();
   }
 
+  isMovie = () => {
+    if (this.props.history.location.pathname.includes("movie")) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   getReleaseDetails = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${
+        `https://api.themoviedb.org/3/${this.isMovie() ? "movie" : "tv"}/${
           this.props.match.params.id
         }?api_key=${process.env.REACT_APP_TMDB_KEY}`
       );
       const release = await response.json();
       this.setState({ release });
-      console.log("release", release);
     } catch (error) {
       console.error("getReleaseDetails error", error);
     }
@@ -45,8 +52,14 @@ class ReleaseDetails extends PureComponent {
             alt={release.title}
           />
           <div>
-            <ReleaseTitle>{release.title}</ReleaseTitle>
-            <ReleaseDate>{release.release_date}</ReleaseDate>
+            <ReleaseTitle>
+              {this.isMovie() ? release.title : release.name}
+            </ReleaseTitle>
+            <ReleaseDate>
+              {this.isMovie()
+                ? release.release_date
+                : `First Aired: ${release.first_air_date}`}
+            </ReleaseDate>
             <ReleaseOverview>{release.overview}</ReleaseOverview>
           </div>
         </ReleaseInfo>

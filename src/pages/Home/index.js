@@ -1,12 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import React, { Component } from "react";
-import {
-  Trail,
-  animated,
-  Transition,
-  config,
-  Keyframes
-} from "react-spring/renderprops";
+import { Trail, animated } from "react-spring/renderprops";
 import { connect } from "react-redux";
 import {
   fetchPopularMovies,
@@ -35,7 +29,6 @@ class Home extends Component {
     this.getPopularMovies();
     this.getPopularTv();
     this.getNewNetflixReleases();
-    console.log(" home this.props", this.props);
   }
 
   getPopularMovies = async () => {

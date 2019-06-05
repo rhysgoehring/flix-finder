@@ -16,6 +16,7 @@ import { Grey800 } from "./utilities/styles/Colors";
 import Home from "./pages/Home";
 import ReleaseDetails from "./pages/ReleaseDetails";
 import PopularMovies from "./pages/PopularMovies";
+import PopularTV from "./pages/PopularTV";
 
 const StyledLink = styled(Link)`
   display: block;
@@ -54,21 +55,6 @@ const useRouter = () => {
   return useContext(__RouterContext);
 };
 
-const Two = () => {
-  return (
-    <div>
-      <h1>Two</h1>
-    </div>
-  );
-};
-const Three = () => {
-  return (
-    <div>
-      <h1>Three</h1>
-    </div>
-  );
-};
-
 const Main = () => {
   const { location } = useRouter();
 
@@ -91,7 +77,7 @@ const Main = () => {
         <Route exact path="/movie/:id" component={ReleaseDetails} />
         <Route exact path="/show/:id" component={ReleaseDetails} />
         <Route exact path="/popularMovies" component={PopularMovies} />
-        <Route exact path="/three" component={Three} />
+        <Route exact path="/popularTV" component={PopularTV} />
       </Switch>
     </animated.div>
   ));
@@ -115,8 +101,8 @@ const NavRoutes = ({ onClick }) => {
       <NavLink to="/popularMovies" onClick={onClick}>
         Popular Movies
       </NavLink>
-      <NavLink to="/three" onClick={onClick}>
-        Three
+      <NavLink to="/popularTV" onClick={onClick}>
+        Popular TV
       </NavLink>
     </NavList>
   );
