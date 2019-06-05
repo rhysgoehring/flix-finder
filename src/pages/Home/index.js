@@ -7,11 +7,7 @@ import {
   fetchNewNetflixReleases
 } from "../../actions";
 import { MainContainer } from "../../utilities/styles/Layout";
-import {
-  RowContainer,
-  Top5Container
-} from "../../components/TopFiveRow/styles";
-import Top5Row from "../../components/TopFiveRow";
+import PreviewRow from "../../components/PreviewRow";
 import Thumbnail from "../../components/Thumbnail";
 
 import SAMPLE_DATA from "./SAMPLE_DATA";
@@ -36,25 +32,26 @@ class Home extends Component {
 
   getPopularMovies = async () => {
     const popularMovies = await this.props.fetchPopularMovies();
-
     this.setState({ popularMovies });
     // this.setState({ popularMovies: SAMPLE_DATA });
   };
 
   getPopularTv = async () => {
     const popularTV = await this.props.fetchPopularTV();
-
     this.setState({ popularTV });
     // this.setState({ popularTV: SAMPLE_DATA });
   };
 
   getNewNetflixReleases = async () => {
-    const {
-      newNetflixMovies,
-      newNetflixShows
-    } = await this.props.fetchNewNetflixReleases();
+    // const {
+    //   newNetflixMovies,
+    //   newNetflixShows
+    // } = await this.props.fetchNewNetflixReleases();
 
-    this.setState({ newNetflixMovies, newNetflixShows });
+    this.setState({
+      newNetflixMovies: SAMPLE_DATA,
+      newNetflixShows: SAMPLE_DATA
+    });
   };
 
   render() {
@@ -62,7 +59,7 @@ class Home extends Component {
       <React.Fragment>
         <h1>Home</h1>
         <MainContainer>
-          <Top5Row
+          <PreviewRow
             title="Most Popular Movies"
             onClick={() => console.log("View All Movies Pressed")}
           >
@@ -84,8 +81,8 @@ class Home extends Component {
                 </animated.div>
               )}
             </Trail>
-          </Top5Row>
-          <Top5Row
+          </PreviewRow>
+          <PreviewRow
             title="Most Popular on TV"
             onClick={() => console.log("View All TV Pressed")}
           >
@@ -107,8 +104,8 @@ class Home extends Component {
                 </animated.div>
               )}
             </Trail>
-          </Top5Row>
-          <Top5Row
+          </PreviewRow>
+          <PreviewRow
             title="New Netflix Movies"
             onClick={() => console.log("View All TV Pressed")}
           >
@@ -130,8 +127,8 @@ class Home extends Component {
                 </animated.div>
               )}
             </Trail>
-          </Top5Row>
-          <Top5Row
+          </PreviewRow>
+          <PreviewRow
             title="New Netflix Shows"
             onClick={() => console.log("View All TV Pressed")}
           >
@@ -140,7 +137,9 @@ class Home extends Component {
               items={this.state.newNetflixShows}
               from={{ opacity: 0, x: -500 }}
               to={{ opacity: 1, x: 0 }}
-              keys={this.state.newNetflixShows.map(item => item.imdbid ? item.imdbid : item.netflixid)}
+              keys={this.state.newNetflixShows.map(item =>
+                item.imdbid ? item.imdbid : item.netflixid
+              )}
             >
               {item => ({ x, opacity }) => (
                 <animated.div
@@ -153,7 +152,7 @@ class Home extends Component {
                 </animated.div>
               )}
             </Trail>
-          </Top5Row>
+          </PreviewRow>
         </MainContainer>
       </React.Fragment>
     );

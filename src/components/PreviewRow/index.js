@@ -1,21 +1,21 @@
 import React from "react";
 import {
-  Top5Container,
+  PreviewContainer,
   RowContainer,
-  Top5Header,
+  PreviewHeader,
   ViewMoreButton
 } from "./styles";
 
-const TopFiveRow = ({ title, children, onClick }) => {
+const PreviewRow = ({ title, children, onClick }) => {
   return (
-    <Top5Container>
-      <Top5Header>
+    <PreviewContainer>
+      <PreviewHeader>
         <h1>{title}</h1>
         <ViewMoreButton onClick={onClick}>View All</ViewMoreButton>
-      </Top5Header>
+      </PreviewHeader>
       <RowContainer>{children}</RowContainer>
-    </Top5Container>
+    </PreviewContainer>
   );
 };
 
-export default TopFiveRow;
+export default PreviewRow;

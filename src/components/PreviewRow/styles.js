@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-const Top5Container = styled.div`
+const PreviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: space-between;
@@ -12,7 +12,7 @@ const Top5Container = styled.div`
   border: 2px solid white;
 `;
 
-const Top5Header = styled.div`
+const PreviewHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -39,4 +39,4 @@ const RowContainer = styled.div`
   border: 1px solid red;
 `;
 
-export { RowContainer, Top5Container, Top5Header, ViewMoreButton };
+export { RowContainer, PreviewContainer, PreviewHeader, ViewMoreButton };
