@@ -1,5 +1,12 @@
+/* eslint-disable no-await-in-loop */
 import React, { Component } from "react";
-import { Trail, animated, Transition } from "react-spring/renderprops";
+import {
+  Trail,
+  animated,
+  Transition,
+  config,
+  Keyframes
+} from "react-spring/renderprops";
 import { connect } from "react-redux";
 import {
   fetchPopularMovies,
@@ -28,6 +35,7 @@ class Home extends Component {
     this.getPopularMovies();
     this.getPopularTv();
     this.getNewNetflixReleases();
+    console.log(" home this.props", this.props);
   }
 
   getPopularMovies = async () => {
@@ -61,20 +69,23 @@ class Home extends Component {
         <MainContainer>
           <PreviewRow
             title="Most Popular Movies"
-            onClick={() => console.log("View All Movies Pressed")}
+            onClick={() => this.props.history.push("/popularMovies")}
           >
             <Trail
               native
+              from={{ opacity: 0, xy: [-500, 50] }}
+              to={{ opacity: 1, xy: [0, 0] }}
               items={this.state.popularMovies}
-              from={{ opacity: 0, x: -500 }}
-              to={{ opacity: 1, x: 0 }}
               keys={this.state.popularMovies.map(item => item.id)}
             >
-              {item => ({ x, opacity }) => (
+              {item => ({ xy, opacity }) => (
                 <animated.div
                   style={{
                     opacity,
-                    transform: x.interpolate(x1 => `translate3d(${x1}%, 0, 0)`)
+                    transform: xy.interpolate(
+                      (x, y) => `translate3d(${x}%, ${y}%, 0)`
+                    )
+                    // transform: y.interpolate(y2 => `translate3d(0, ${y2}%, 0)`)
                   }}
                 >
                   <Thumbnail media={item} />
@@ -84,20 +95,22 @@ class Home extends Component {
           </PreviewRow>
           <PreviewRow
             title="Most Popular on TV"
-            onClick={() => console.log("View All TV Pressed")}
+            onClick={() => console.log("Popular TV Button pressed")}
           >
             <Trail
               native
               items={this.state.popularTV}
-              from={{ opacity: 0, x: -500 }}
-              to={{ opacity: 1, x: 0 }}
+              from={{ opacity: 0, xy: [-500, 50] }}
+              to={{ opacity: 1, xy: [0, 0] }}
               keys={this.state.popularTV.map(item => item.id)}
             >
-              {item => ({ x, opacity }) => (
+              {item => ({ xy, opacity }) => (
                 <animated.div
                   style={{
                     opacity,
-                    transform: x.interpolate(x1 => `translate3d(${x1}%, 0, 0)`)
+                    transform: xy.interpolate(
+                      (x, y) => `translate3d(${x}%, ${y}%, 0)`
+                    )
                   }}
                 >
                   <Thumbnail show media={item} />

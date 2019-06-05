@@ -15,6 +15,7 @@ import { Grey800 } from "./utilities/styles/Colors";
 
 import Home from "./pages/Home";
 import ReleaseDetails from "./pages/ReleaseDetails";
+import PopularMovies from "./pages/PopularMovies";
 
 const StyledLink = styled(Link)`
   display: block;
@@ -89,7 +90,7 @@ const Main = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/movie/:id" component={ReleaseDetails} />
         <Route exact path="/show/:id" component={ReleaseDetails} />
-        <Route exact path="/two" component={Two} />
+        <Route exact path="/popularMovies" component={PopularMovies} />
         <Route exact path="/three" component={Three} />
       </Switch>
     </animated.div>
@@ -111,8 +112,8 @@ const NavRoutes = ({ onClick }) => {
       <NavLink to="/" onClick={onClick}>
         Home
       </NavLink>
-      <NavLink to="/two" onClick={onClick}>
-        Two
+      <NavLink to="/popularMovies" onClick={onClick}>
+        Popular Movies
       </NavLink>
       <NavLink to="/three" onClick={onClick}>
         Three
