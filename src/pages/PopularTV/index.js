@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
+import { Trail, animated } from "react-spring/renderprops";
 import { fetchPopularTV } from "../../actions";
 import { ReleaseGrid, MainContainer } from "../../utilities/styles/Layout";
 import Thumbnail from "../../components/Thumbnail";
 
-class PopularTV extends Component {
+class PopularTV extends PureComponent {
   componentDidMount() {
     if (this.props.tv.length === 0) {
       this.props.fetchPopularTV();
@@ -16,9 +17,26 @@ class PopularTV extends Component {
       <MainContainer>
         <h1 style={{ color: "white" }}>Popular Shows</h1>
         <ReleaseGrid allReleases>
-          {this.props.tv.map(tv => (
-            <Thumbnail show media={tv} />
-          ))}
+          <Trail
+            native
+            items={this.props.tv}
+            from={{ opacity: 0, xy: [-500, 500] }}
+            to={{ opacity: 1, xy: [0, 0] }}
+            keys={this.props.tv.map(item => item.id)}
+          >
+            {item => ({ xy, opacity }) => (
+              <animated.div
+                style={{
+                  opacity,
+                  transform: xy.interpolate(
+                    (x, y) => `translate3d(${x}%, ${y}%, 0)`
+                  )
+                }}
+              >
+                <Thumbnail show media={item} />
+              </animated.div>
+            )}
+          </Trail>
         </ReleaseGrid>
       </MainContainer>
     );

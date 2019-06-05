@@ -16,7 +16,7 @@ const ReleaseGrid = styled.div`
   /* grid-template-columns: repeat(7, 1fr); */
   grid-template-columns: ${({ allReleases }) =>
     allReleases ? "repeat(8, 1fr)" : "repeat(7, 1fr)"};
-  grid-row-gap: 1rem;
-  grid-column-gap: 2rem;
+  grid-row-gap: 2.2rem;
+  grid-column-gap: 2.2rem;
 `;
 export { MainContainer, ReleaseGrid };

@@ -1,5 +1,5 @@
 /* eslint-disable no-await-in-loop */
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Trail, animated } from "react-spring/renderprops";
 import { connect } from "react-redux";
 import {
@@ -13,7 +13,7 @@ import Thumbnail from "../../components/Thumbnail";
 
 import SAMPLE_DATA from "./SAMPLE_DATA";
 
-class Home extends Component {
+class Home extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -66,7 +66,7 @@ class Home extends Component {
           >
             <Trail
               native
-              from={{ opacity: 0, xy: [-500, 50] }}
+              from={{ opacity: 0, xy: [-500, 500] }}
               to={{ opacity: 1, xy: [0, 0] }}
               items={this.state.popularMovies}
               keys={this.state.popularMovies.map(item => item.id)}
@@ -88,12 +88,12 @@ class Home extends Component {
           </PreviewRow>
           <PreviewRow
             title="Most Popular on TV"
-            onClick={() => console.log("Popular TV Button pressed")}
+            onClick={() => this.props.history.push("/popularTV")}
           >
             <Trail
               native
               items={this.state.popularTV}
-              from={{ opacity: 0, xy: [-500, 50] }}
+              from={{ opacity: 0, xy: [-500, 500] }}
               to={{ opacity: 1, xy: [0, 0] }}
               keys={this.state.popularTV.map(item => item.id)}
             >
