@@ -15,8 +15,7 @@ import { Grey800 } from "./utilities/styles/Colors";
 
 import Home from "./pages/Home";
 import ReleaseDetails from "./pages/ReleaseDetails";
-import PopularMovies from "./pages/PopularMovies";
-import PopularTV from "./pages/PopularTV";
+import PopularReleases from "./pages/PopularReleases";
 
 const StyledLink = styled(Link)`
   display: block;
@@ -76,8 +75,8 @@ const Main = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/movie/:id" component={ReleaseDetails} />
         <Route exact path="/show/:id" component={ReleaseDetails} />
-        <Route exact path="/popularMovies" component={PopularMovies} />
-        <Route exact path="/popularTV" component={PopularTV} />
+        <Route exact path="/popularMovies" component={PopularReleases} />
+        <Route exact path="/popularTV" component={PopularReleases} />
       </Switch>
     </animated.div>
   ));

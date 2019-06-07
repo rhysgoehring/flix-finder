@@ -26,7 +26,7 @@ const fetchPopularMovies = () => async dispatch => {
       mostPopularMovies
     });
 
-    return topPopularMovies;
+    return { topPopularMovies, mostPopularMovies };
   } catch (error) {
     console.error("fetchMostPopularTMDB movies redux action error", error);
   }
@@ -48,7 +48,7 @@ const fetchPopularTV = () => async dispatch => {
       mostPopularTV
     });
 
-    return topPopularTV;
+    return { topPopularTV, mostPopularTV };
   } catch (error) {
     console.error("fetchMostPopularTMDB shows redux action error", error);
   }

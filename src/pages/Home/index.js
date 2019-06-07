@@ -32,14 +32,14 @@ class Home extends PureComponent {
   }
 
   getPopularMovies = async () => {
-    const popularMovies = await this.props.fetchPopularMovies();
-    this.setState({ popularMovies });
+    const { topPopularMovies } = await this.props.fetchPopularMovies();
+    this.setState({ popularMovies: topPopularMovies });
     // this.setState({ popularMovies: SAMPLE_DATA });
   };
 
   getPopularTv = async () => {
-    const popularTV = await this.props.fetchPopularTV();
-    this.setState({ popularTV });
+    const { topPopularTV } = await this.props.fetchPopularTV();
+    this.setState({ popularTV: topPopularTV });
     // this.setState({ popularTV: SAMPLE_DATA });
   };
 
@@ -78,7 +78,6 @@ class Home extends PureComponent {
                     transform: xy.interpolate(
                       (x, y) => `translate3d(${x}%, ${y}%, 0)`
                     )
-                    // transform: y.interpolate(y2 => `translate3d(0, ${y2}%, 0)`)
                   }}
                 >
                   <Thumbnail media={item} />
@@ -111,7 +110,7 @@ class Home extends PureComponent {
               )}
             </Trail>
           </PreviewRow>
-          <PreviewRow
+          {/* <PreviewRow
             title="New Netflix Movies"
             onClick={() => console.log("View All TV Pressed")}
           >
@@ -158,7 +157,7 @@ class Home extends PureComponent {
                 </animated.div>
               )}
             </Trail>
-          </PreviewRow>
+          </PreviewRow> */}
         </MainContainer>
       </React.Fragment>
     );

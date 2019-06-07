@@ -7,6 +7,7 @@ import {
   ReleaseDate,
   ReleaseOverview
 } from "./styles";
+import { isMovie } from "../../utilities/functions";
 
 const POSTER_PATH = "http://image.tmdb.org/t/p/w154";
 const BACKDROP_PATH = "http://image.tmdb.org/t/p/w1280";
@@ -20,18 +21,10 @@ class ReleaseDetails extends PureComponent {
     this.getReleaseDetails();
   }
 
-  isMovie = () => {
-    if (this.props.history.location.pathname.includes("movie")) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   getReleaseDetails = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${this.isMovie() ? "movie" : "tv"}/${
+        `https://api.themoviedb.org/3/${isMovie(this) ? "movie" : "tv"}/${
           this.props.match.params.id
         }?api_key=${process.env.REACT_APP_TMDB_KEY}`
       );
@@ -53,10 +46,10 @@ class ReleaseDetails extends PureComponent {
           />
           <div>
             <ReleaseTitle>
-              {this.isMovie() ? release.title : release.name}
+              {isMovie(this) ? release.title : release.name}
             </ReleaseTitle>
             <ReleaseDate>
-              {this.isMovie()
+              {isMovie(this)
                 ? release.release_date
                 : `First Aired: ${release.first_air_date}`}
             </ReleaseDate>
