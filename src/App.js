@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { GlobalStyles } from "./utilities/styles";
 import store from "./store";
 
-import Header from "./components/Header";
 import Nav from "./components/Nav";
 import { Routes } from "./Routes";
 
@@ -16,8 +15,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <GlobalStyles />
-      <Header onClick={() => setNavOpen(!isNavOpen)} />
-      <Routes>
+      <Routes onClick={() => setNavOpen(!isNavOpen)}>
         <Nav style={navAnimation} onNavLinkClick={() => setNavOpen(false)} />
       </Routes>
     </Provider>

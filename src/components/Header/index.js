@@ -5,7 +5,7 @@ import { HeaderContainer, Logo, IconWrapper } from "./styles";
 const Header = ({ onClick }) => {
   return (
     <HeaderContainer>
-      <Logo>flixfinder</Logo>
+      <Logo to="/">flixfinder</Logo>
       <IconWrapper onClick={onClick}>
         <MaterialIcon icon="menu" color="#fff" size="50" />
       </IconWrapper>

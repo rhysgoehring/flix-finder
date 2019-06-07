@@ -58,7 +58,6 @@ class Home extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <h1>Home</h1>
         <MainContainer>
           <PreviewRow
             title="Most Popular Movies"

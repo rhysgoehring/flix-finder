@@ -16,6 +16,7 @@ import { Grey800 } from "./utilities/styles/Colors";
 import Home from "./pages/Home";
 import ReleaseDetails from "./pages/ReleaseDetails";
 import PopularReleases from "./pages/PopularReleases";
+import Header from "./components/Header";
 
 const StyledLink = styled(Link)`
   display: block;
@@ -64,7 +65,10 @@ const Main = () => {
       width: "100%",
       transform: "translate3d(100%, 0, 0)"
     },
-    enter: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+    enter: {
+      opacity: 1,
+      transform: "translate3d(0, 0, 0)"
+    },
     leave: { opacity: 0, transform: "translate3d(-50%, 0, 0)" }
   });
 
@@ -82,9 +86,10 @@ const Main = () => {
   ));
 };
 
-const Routes = ({ children }) => {
+const Routes = ({ children, onClick }) => {
   return (
     <Router>
+      <Header onClick={onClick} />
       <Main />
       {children}
     </Router>
