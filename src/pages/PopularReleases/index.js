@@ -42,7 +42,7 @@ class PopularReleases extends PureComponent {
             native
             // force
             items={releases}
-            from={{ opacity: 0, xy: [-500, 500] }}
+            from={{ opacity: 0, xy: [-50, 50] }}
             to={{ opacity: 1, xy: [0, 0] }}
             keys={releases.map(item => item.id)}
           >
