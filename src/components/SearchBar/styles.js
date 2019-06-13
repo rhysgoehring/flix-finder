@@ -11,14 +11,14 @@ const SearchInput = styled.input`
   font-size: 1.8rem;
 
   &:focus {
-    border: none;
+    outline: none;
   }
 `;
 
 const SearchDropDown = styled.div`
   margin: 0 auto;
   width: 40rem;
-  border: 1px solid greenyellow;
+  border: 1px solid white;
   border-bottom: none;
   background-color: black;
   position: fixed;
