@@ -58,8 +58,8 @@ class SearchBar extends Component {
             <SearchInput
               {...getInputProps({
                 placeholder: this.props.movieSearch
-                  ? "Search movies"
-                  : "Search TV",
+                  ? "Search All Movies"
+                  : "Search All TV Shows",
                 onChange: this.inputOnChange,
                 value: inputValue
               })}

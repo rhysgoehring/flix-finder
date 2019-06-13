@@ -24,6 +24,8 @@ const SearchBarWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
+  z-index: 20;
+  flex: 0 0 70%;
 `;
 
 const ViewMoreButton = styled.button`
@@ -37,7 +39,7 @@ const ViewMoreButton = styled.button`
   font-size: 1.8rem;
   align-self: center;
   transition: all 0.9s ease;
-  z-index: 10;
+  z-index: 25;
 
   &:hover {
     ${elevation[1]};

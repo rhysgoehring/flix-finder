@@ -29,6 +29,10 @@ const Logo = styled(Link)`
 
 const IconWrapper = styled.div`
   z-index: 15;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export { HeaderContainer, Logo, IconWrapper };

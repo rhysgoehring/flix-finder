@@ -9,6 +9,10 @@ const SearchInput = styled.input`
   border: none;
   border-bottom: 1px solid white;
   font-size: 1.8rem;
+
+  &:focus {
+    border: none;
+  }
 `;
 
 const SearchDropDown = styled.div`
