@@ -19,6 +19,13 @@ const PreviewHeader = styled.div`
   align-items: center;
 `;
 
+const SearchBarWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+`;
+
 const ViewMoreButton = styled.button`
   ${elevation[3]};
   background: transparent;
@@ -47,4 +54,10 @@ const RowContainer = styled.div`
   position: relative;
 `;
 
-export { RowContainer, PreviewContainer, PreviewHeader, ViewMoreButton };
+export {
+  RowContainer,
+  PreviewContainer,
+  PreviewHeader,
+  ViewMoreButton,
+  SearchBarWrapper
+};
