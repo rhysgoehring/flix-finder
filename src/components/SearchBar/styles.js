@@ -34,7 +34,6 @@ const DropDownItem = styled.div`
   background-color: black;
   text-align: left;
   background-color: ${({ backgroundColor }) => backgroundColor};
-  font-weight: ${({ fontWeight }) => fontWeight};
 `;
 
 export { SearchInput, SearchDropDown, DropDownItem };

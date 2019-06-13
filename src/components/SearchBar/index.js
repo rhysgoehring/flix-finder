@@ -47,7 +47,6 @@ class SearchBar extends Component {
         itemToString={item => (item ? item.title : "")}
       >
         {({
-          selectedItem,
           getInputProps,
           getItemProps,
           highlightedIndex,
@@ -80,7 +79,6 @@ class SearchBar extends Component {
                       backgroundColor={
                         highlightedIndex === index ? `${Grey800}` : `${Black}`
                       }
-                      fontWeight={selectedItem === item ? "bold" : "normal"}
                       {...getItemProps({ key: index, index, item })}
                     >
                       {this.props.movieSearch ? item.title : item.name}
