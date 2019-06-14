@@ -57,61 +57,60 @@ class Home extends PureComponent {
 
   render() {
     return (
-      <React.Fragment>
-        <MainContainer>
-          <PreviewRow
-            title="Most Popular Movies"
-            onClick={() => this.props.history.push("/popularMovies")}
-            movieSearch
+      <MainContainer>
+        <PreviewRow
+          title="Most Popular Movies"
+          onClick={() => this.props.history.push("/popularMovies")}
+          movieSearch
+        >
+          <Trail
+            native
+            from={{ opacity: 0, xy: [-500, -50] }}
+            to={{ opacity: 1, xy: [0, 0] }}
+            items={this.state.popularMovies}
+            keys={this.state.popularMovies.map(item => item.id)}
           >
-            <Trail
-              native
-              from={{ opacity: 0, xy: [-500, -50] }}
-              to={{ opacity: 1, xy: [0, 0] }}
-              items={this.state.popularMovies}
-              keys={this.state.popularMovies.map(item => item.id)}
-            >
-              {item => ({ xy, opacity }) => (
-                <animated.div
-                  style={{
-                    opacity,
-                    transform: xy.interpolate(
-                      (x, y) => `translate3d(${x}%, ${y}%, 0)`
-                    )
-                  }}
-                >
-                  <Thumbnail media={item} />
-                </animated.div>
-              )}
-            </Trail>
-          </PreviewRow>
-          <PreviewRow
-            title="Most Popular on TV"
-            onClick={() => this.props.history.push("/popularTV")}
-            movieSearch={false}
+            {item => ({ xy, opacity }) => (
+              <animated.div
+                style={{
+                  opacity,
+                  transform: xy.interpolate(
+                    (x, y) => `translate3d(${x}%, ${y}%, 0)`
+                  )
+                }}
+              >
+                <Thumbnail media={item} />
+              </animated.div>
+            )}
+          </Trail>
+        </PreviewRow>
+        <PreviewRow
+          title="Most Popular on TV"
+          onClick={() => this.props.history.push("/popularTV")}
+          movieSearch={false}
+        >
+          <Trail
+            native
+            items={this.state.popularTV}
+            from={{ opacity: 0, xy: [-500, 50] }}
+            to={{ opacity: 1, xy: [0, 0] }}
+            keys={this.state.popularTV.map(item => item.id)}
           >
-            <Trail
-              native
-              items={this.state.popularTV}
-              from={{ opacity: 0, xy: [-500, 50] }}
-              to={{ opacity: 1, xy: [0, 0] }}
-              keys={this.state.popularTV.map(item => item.id)}
-            >
-              {item => ({ xy, opacity }) => (
-                <animated.div
-                  style={{
-                    opacity,
-                    transform: xy.interpolate(
-                      (x, y) => `translate3d(${x}%, ${y}%, 0)`
-                    )
-                  }}
-                >
-                  <Thumbnail show media={item} />
-                </animated.div>
-              )}
-            </Trail>
-          </PreviewRow>
-          {/* <PreviewRow
+            {item => ({ xy, opacity }) => (
+              <animated.div
+                style={{
+                  opacity,
+                  transform: xy.interpolate(
+                    (x, y) => `translate3d(${x}%, ${y}%, 0)`
+                  )
+                }}
+              >
+                <Thumbnail show media={item} />
+              </animated.div>
+            )}
+          </Trail>
+        </PreviewRow>
+        {/* <PreviewRow
             title="New Netflix Movies"
             onClick={() => console.log("View All TV Pressed")}
           >
@@ -159,8 +158,7 @@ class Home extends PureComponent {
               )}
             </Trail>
           </PreviewRow> */}
-        </MainContainer>
-      </React.Fragment>
+      </MainContainer>
     );
   }
 }

@@ -1,10 +1,12 @@
 import styled from "styled-components/macro";
+import { Black } from "../../utilities/styles/Colors";
 
 const ReleaseWrapper = styled.div`
   position: relative;
-  padding-top: 50vh;
+  padding-top: 30vh;
   background: url(${({ backdrop }) => backdrop}) no-repeat;
   background-size: cover;
+  height: 100vh;
 `;
 
 const ReleaseInfo = styled.div`
@@ -13,7 +15,7 @@ const ReleaseInfo = styled.div`
   padding: 2rem 10%;
   display: flex;
   > div {
-    margin-left: 20px;
+    margin-left: 2rem;
   }
   img {
     position: relative;
