@@ -5,6 +5,7 @@ const ReleaseWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   padding-top: 50vh;
   background: url(${({ backdrop }) => backdrop}) no-repeat;
   background-size: cover;
