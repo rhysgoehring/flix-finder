@@ -29,7 +29,7 @@ const SearchBarWrapper = styled.div`
 `;
 
 const ViewMoreButton = styled.button`
-  ${elevation[3]};
+  ${elevation[2]};
   background: transparent;
   text-align: center;
   color: white;
@@ -40,7 +40,7 @@ const ViewMoreButton = styled.button`
   z-index: 25;
 
   &:hover {
-    ${elevation[1]};
+    ${elevation[3]};
     background: white;
     color: ${Black};
   }

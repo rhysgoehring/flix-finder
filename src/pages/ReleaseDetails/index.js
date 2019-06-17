@@ -10,6 +10,7 @@ import {
 } from "./styles";
 import { isMovie } from "../../utilities/functions";
 import { MainContainer } from "../../utilities/styles/Layout";
+import { imdbConfig } from "../../actions/util/axios_configs";
 
 const POSTER_PATH = "http://image.tmdb.org/t/p/w154";
 const BACKDROP_PATH = "http://image.tmdb.org/t/p/w1280";
@@ -24,6 +25,8 @@ class ReleaseDetails extends PureComponent {
   }
 
   getReleaseDetails = async () => {
+    // TODO: Add more release details with data from OMDB
+    // TODO: Refactor...
     try {
       const tmdbResponse = await axios.get(
         `https://api.themoviedb.org/3/${isMovie(this) ? "movie" : "tv"}/${
@@ -51,7 +54,7 @@ class ReleaseDetails extends PureComponent {
           imdbVotes
         } = omdbResponse.data;
 
-        const omdbRatings = Ratings.filter(
+        const omdbRatings = await Ratings.filter(
           rating => rating.Source !== "Internet Movie Database"
         );
 
@@ -62,7 +65,6 @@ class ReleaseDetails extends PureComponent {
           Actors,
           Awards,
           Director,
-          Ratings,
           omdbRatings,
           Writer,
           imdbRating,
@@ -71,13 +73,55 @@ class ReleaseDetails extends PureComponent {
 
         console.log("release", release);
 
-        // TODO: Add more release details with data from OMDB
-
         this.setState({ release });
       } else {
-        this.setState({
-          release: tmdbData
-        });
+        const { data } = await axios.get(
+          `https://imdb8.p.rapidapi.com/title/find?q=${tmdbData.name}`,
+          imdbConfig
+        );
+        const imdbTVResults = data.results;
+        console.log("find imdb", imdbTVResults);
+
+        const imdbTVdata = imdbTVResults.find(
+          tvShow => tvShow.titleType === "tvSeries"
+        );
+
+        const imdbTVid = imdbTVdata.id.replace(/\//g, "").replace("title", "");
+
+        console.log("imdbTVid", imdbTVid);
+
+        const omdbTVResponse = await axios.get(
+          `http://www.omdbapi.com/?apikey=${
+            process.env.REACT_APP_OMDB_KEY
+          }&i=${imdbTVid}`
+        );
+
+        const {
+          Actors,
+          Awards,
+          Director,
+          Ratings,
+          Writer,
+          imdbRating,
+          imdbVotes
+        } = omdbTVResponse.data;
+
+        const omdbRatings = Ratings.filter(
+          rating => rating.Source !== "Internet Movie Database"
+        );
+
+        const release = {
+          ...tmdbData,
+          Actors,
+          Awards,
+          Director,
+          omdbRatings,
+          Writer,
+          imdbRating,
+          imdbVotes
+        };
+
+        this.setState({ release });
       }
     } catch (error) {
       console.error("getReleaseDetails error", error);
