@@ -10,7 +10,6 @@ const ReleaseWrapper = styled.div`
   background-size: cover;
   height: 100vh;
   width: 100%;
-
   display: flex;
   flex-direction: column;
 `;
