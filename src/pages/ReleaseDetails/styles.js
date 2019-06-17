@@ -9,6 +9,7 @@ const ReleaseWrapper = styled.div`
   background: url(${({ backdrop }) => backdrop}) no-repeat;
   background-size: cover;
   height: 100vh;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
