@@ -2,17 +2,23 @@ import styled from "styled-components/macro";
 import { Black } from "../../utilities/styles/Colors";
 
 const ReleaseWrapper = styled.div`
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   padding-top: 50vh;
   background: url(${({ backdrop }) => backdrop}) no-repeat;
   background-size: cover;
   height: 100vh;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 const ReleaseInfo = styled.div`
   background: rgba(0, 0, 0, 0.7);
   text-align: left;
   padding: 2rem 10%;
+  height: 100vh;
   display: flex;
   > div {
     margin-left: 2rem;
@@ -20,19 +26,44 @@ const ReleaseInfo = styled.div`
   img {
     position: relative;
     top: -5rem;
+    height: 23.1rem;
+  }
+`;
+const ReleaseHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+`;
+
+const DetailBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: ${({ alignItems }) => alignItems};
+  border: ${({ border }) => border};
+  padding: ${({ padding }) => padding};
+`;
+
+const ReleaseText = styled.p`
+  font-size: ${({ fontSize }) => fontSize || "1.8rem"};
+  margin: 0;
+  padding: 1rem 0rem;
+  line-height: 2rem;
+`;
+
+const ReleaseTitle = styled.a`
+  font-size: 3rem;
+  text-decoration: none;
+  color: white;
+  padding: 0 0 1rem;
+
+  &:hover {
+    text-decoration: underline solid white;
   }
 `;
 
-const ReleaseTitle = styled.h1`
-  font-size: 3rem;
-`;
-
-const ReleaseDate = styled.h3`
-  font-size: 2rem;
-  padding-bottom: 1.5rem;
-`;
-
-const ReleaseOverview = styled.p`
+const ReleaseOverview = styled(ReleaseText)`
   font-size: 1.8rem;
   line-height: 3rem;
 `;
@@ -40,7 +71,9 @@ const ReleaseOverview = styled.p`
 export {
   ReleaseWrapper,
   ReleaseInfo,
+  DetailBox,
   ReleaseTitle,
-  ReleaseDate,
-  ReleaseOverview
+  ReleaseOverview,
+  ReleaseHeader,
+  ReleaseText
 };

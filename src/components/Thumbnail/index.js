@@ -8,7 +8,7 @@ const BACKDROP_PATH = "http://image.tmdb.org/t/p/w1280";
 export const Poster = styled.img`
   box-shadow: 0 0 35px black;
   /* padding: 0 1.7rem; */
-  /* height: 231px; */
+  height: 23.1rem;
   /* width: 300px; */
   object-fit: cover;
   transition: all 0.5s ease-in-out;

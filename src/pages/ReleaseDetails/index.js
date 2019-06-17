@@ -5,8 +5,10 @@ import {
   ReleaseWrapper,
   ReleaseInfo,
   ReleaseTitle,
-  ReleaseDate,
-  ReleaseOverview
+  ReleaseOverview,
+  DetailBox,
+  ReleaseHeader,
+  ReleaseText
 } from "./styles";
 import { isMovie } from "../../utilities/functions";
 import { MainContainer } from "../../utilities/styles/Layout";
@@ -25,8 +27,7 @@ class ReleaseDetails extends PureComponent {
   }
 
   getReleaseDetails = async () => {
-    // TODO: Add more release details with data from OMDB
-    // TODO: Refactor...
+    // TODO: Add more release details with data from OMDB to UI
     try {
       const tmdbResponse = await axios.get(
         `https://api.themoviedb.org/3/${isMovie(this) ? "movie" : "tv"}/${
@@ -35,8 +36,7 @@ class ReleaseDetails extends PureComponent {
       );
 
       const tmdbData = tmdbResponse.data;
-      console.log("tmdb", tmdbData);
-
+      // console.log("tmdb", tmdbData);
       if (isMovie(this)) {
         const omdbResponse = await axios.get(
           `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&i=${
@@ -57,9 +57,7 @@ class ReleaseDetails extends PureComponent {
         const omdbRatings = await Ratings.filter(
           rating => rating.Source !== "Internet Movie Database"
         );
-
-        console.log("omdbRatings", omdbRatings);
-
+        // console.log("omdbRatings", omdbRatings);
         const release = {
           ...tmdbData,
           Actors,
@@ -70,9 +68,7 @@ class ReleaseDetails extends PureComponent {
           imdbRating,
           imdbVotes
         };
-
         console.log("release", release);
-
         this.setState({ release });
       } else {
         const { data } = await axios.get(
@@ -80,21 +76,20 @@ class ReleaseDetails extends PureComponent {
           imdbConfig
         );
         const imdbTVResults = data.results;
-        console.log("find imdb", imdbTVResults);
-
+        // console.log("find imdb", imdbTVResults);
         const imdbTVdata = imdbTVResults.find(
           tvShow => tvShow.titleType === "tvSeries"
         );
 
         const imdbTVid = imdbTVdata.id.replace(/\//g, "").replace("title", "");
-
-        console.log("imdbTVid", imdbTVid);
-
+        // console.log("imdbTVid", imdbTVid);
         const omdbTVResponse = await axios.get(
           `http://www.omdbapi.com/?apikey=${
             process.env.REACT_APP_OMDB_KEY
           }&i=${imdbTVid}`
         );
+
+        console.log("omdb", omdbTVResponse.data);
 
         const {
           Actors,
@@ -120,7 +115,7 @@ class ReleaseDetails extends PureComponent {
           imdbRating,
           imdbVotes
         };
-
+        console.log("release", release);
         this.setState({ release });
       }
     } catch (error) {
@@ -139,14 +134,36 @@ class ReleaseDetails extends PureComponent {
               alt={release.title}
             />
             <div>
-              <ReleaseTitle>
-                {isMovie(this) ? release.title : release.name}
-              </ReleaseTitle>
-              <ReleaseDate>
-                {isMovie(this)
-                  ? `Released: ${release.release_date}`
-                  : `First Aired: ${release.first_air_date}`}
-              </ReleaseDate>
+              <ReleaseHeader>
+                <DetailBox alignItems="flex-start">
+                  <ReleaseTitle target="_blank" href={release.homepage}>
+                    {isMovie(this) ? release.title : release.name}
+                  </ReleaseTitle>
+                  <ReleaseText>
+                    {isMovie(this)
+                      ? `Released: ${release.release_date}`
+                      : `First Aired: ${release.first_air_date}`}
+                  </ReleaseText>
+                  <ReleaseText>Featuring: {release.Actors}</ReleaseText>
+                  <ReleaseText>Written By: {release.Writer}</ReleaseText>
+                </DetailBox>
+                <DetailBox
+                  alignItems="flex-start"
+                  border="1px solid white"
+                  padding="0 3.5rem"
+                >
+                  <ReleaseText fontSize="2rem" borderBottom="1px solid white">
+                    RATINGS
+                  </ReleaseText>
+                  <ReleaseText>IMDB: {release.imdbRating}</ReleaseText>
+                  {release.omdbRatings &&
+                    release.omdbRatings.map(rating => (
+                      <ReleaseText key={rating.Source}>
+                        {rating.Source}: {rating.Value}
+                      </ReleaseText>
+                    ))}
+                </DetailBox>
+              </ReleaseHeader>
               <ReleaseOverview>{release.overview}</ReleaseOverview>
             </div>
           </ReleaseInfo>
