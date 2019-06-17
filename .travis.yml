@@ -4,8 +4,9 @@ node_js:
 cache:
   directories:
     - node_modules
+  yarn: true
 script:
-  - npm run build
+  - yarn build
 deploy:
   provider: surge
   skip_cleanup: true

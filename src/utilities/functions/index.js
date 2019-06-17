@@ -5,4 +5,5 @@ const isMovie = component => {
   return paths.some(path => currentURL.includes(path));
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export { isMovie };

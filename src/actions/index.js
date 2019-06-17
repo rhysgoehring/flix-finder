@@ -4,12 +4,7 @@ import {
   FETCH_NEW_NETFLIX_RELEASES,
   FETCH_MOST_POPULAR_TV_TMDB
 } from "./types";
-import {
-  netflixConfig,
-  edhConfig,
-  imdbConfig,
-  utellyConfig
-} from "./util/axios_configs";
+import { netflixConfig } from "./util/axios_configs";
 
 const fetchPopularMovies = () => async dispatch => {
   try {

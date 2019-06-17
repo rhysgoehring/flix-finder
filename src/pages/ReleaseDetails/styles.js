@@ -1,5 +1,4 @@
 import styled from "styled-components/macro";
-import { Black } from "../../utilities/styles/Colors";
 
 const ReleaseWrapper = styled.div`
   position: fixed;

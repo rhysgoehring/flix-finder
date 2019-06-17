@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 
 const POSTER_PATH = "http://image.tmdb.org/t/p/w154";
-const BACKDROP_PATH = "http://image.tmdb.org/t/p/w1280";
+// const BACKDROP_PATH = "http://image.tmdb.org/t/p/w1280";
 
 export const Poster = styled.img`
   box-shadow: 0 0 35px black;
@@ -18,11 +18,6 @@ export const Poster = styled.img`
   }
 `;
 
-const TitleOverlay = styled.h1`
-  color: white;
-  margin-top: -3rem;
-`;
-
 const Thumbnail = ({ media, netflix, show }) => (
   <Link to={show ? `show/${media.id}` : `movie/${media.id}`}>
     <Poster
@@ -30,7 +25,6 @@ const Thumbnail = ({ media, netflix, show }) => (
       src={netflix ? media.image : `${POSTER_PATH}/${media.poster_path}`}
       // src={netflix ? media.image : `${BACKDROP_PATH}/${media.backdrop_path}`}
     />
-    {/* <TitleOverlay>{media.title}</TitleOverlay> */}
   </Link>
 );
 
