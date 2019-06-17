@@ -73,9 +73,6 @@ const fetchNewNetflixReleases = () => async dispatch => {
     const newNetflixShows = allNewShows.slice(0, 7);
     const newNetflixMovies = allNewMovies.slice(0, 7);
 
-    // console.log("allNewMovies", allNewMovies);
-    // console.log("allNewShows", allNewShows);
-
     dispatch({
       type: FETCH_NEW_NETFLIX_RELEASES,
       allNewMovies,

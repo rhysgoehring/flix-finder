@@ -36,7 +36,7 @@ class ReleaseDetails extends PureComponent {
       );
 
       const tmdbData = tmdbResponse.data;
-      // console.log("tmdb", tmdbData);
+
       if (isMovie(this)) {
         const omdbResponse = await axios.get(
           `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&i=${
@@ -57,7 +57,7 @@ class ReleaseDetails extends PureComponent {
         const omdbRatings = await Ratings.filter(
           rating => rating.Source !== "Internet Movie Database"
         );
-        // console.log("omdbRatings", omdbRatings);
+
         const release = {
           ...tmdbData,
           Actors,
@@ -68,7 +68,7 @@ class ReleaseDetails extends PureComponent {
           imdbRating,
           imdbVotes
         };
-        console.log("release", release);
+
         this.setState({ release });
       } else {
         const { data } = await axios.get(
@@ -76,20 +76,18 @@ class ReleaseDetails extends PureComponent {
           imdbConfig
         );
         const imdbTVResults = data.results;
-        // console.log("find imdb", imdbTVResults);
+
         const imdbTVdata = imdbTVResults.find(
           tvShow => tvShow.titleType === "tvSeries"
         );
 
         const imdbTVid = imdbTVdata.id.replace(/\//g, "").replace("title", "");
-        // console.log("imdbTVid", imdbTVid);
+
         const omdbTVResponse = await axios.get(
           `http://www.omdbapi.com/?apikey=${
             process.env.REACT_APP_OMDB_KEY
           }&i=${imdbTVid}`
         );
-
-        console.log("omdb", omdbTVResponse.data);
 
         const {
           Actors,
@@ -115,7 +113,7 @@ class ReleaseDetails extends PureComponent {
           imdbRating,
           imdbVotes
         };
-        console.log("release", release);
+
         this.setState({ release });
       }
     } catch (error) {
