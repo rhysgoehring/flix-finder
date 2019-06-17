@@ -50,8 +50,8 @@ const DetailBox = styled.div`
 const ReleaseText = styled.p`
   font-size: ${({ fontSize }) => fontSize || "1.8rem"};
   margin: 0;
-  padding: 1rem 0rem;
-  line-height: 2rem;
+  padding: 1rem 1rem;
+  line-height: 3rem;
 `;
 
 const ReleaseTitle = styled.a`
