@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'PT Sans', sans-serif;
     background: ${Gunmetal};
     color: white;
     margin: 0;

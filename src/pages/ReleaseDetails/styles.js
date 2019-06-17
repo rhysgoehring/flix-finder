@@ -3,7 +3,7 @@ import { Black } from "../../utilities/styles/Colors";
 
 const ReleaseWrapper = styled.div`
   position: relative;
-  padding-top: 30vh;
+  padding-top: 50vh;
   background: url(${({ backdrop }) => backdrop}) no-repeat;
   background-size: cover;
   height: 100vh;

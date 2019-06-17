@@ -33,11 +33,9 @@ const ViewMoreButton = styled.button`
   background: transparent;
   text-align: center;
   color: white;
-  width: 10rem;
-  height: 3.5rem;
   border-radius: 0.5rem;
+  padding: 1rem 2rem;
   font-size: 1.8rem;
-  align-self: center;
   transition: all 0.9s ease;
   z-index: 25;
 
