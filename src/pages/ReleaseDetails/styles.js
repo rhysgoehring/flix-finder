@@ -43,6 +43,8 @@ const DetailBox = styled.div`
   align-items: ${({ alignItems }) => alignItems};
   border: ${({ border }) => border};
   padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
+  width: ${({ width }) => width};
 `;
 
 const ReleaseText = styled.p`

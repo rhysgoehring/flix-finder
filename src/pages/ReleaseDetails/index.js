@@ -148,15 +148,19 @@ class ReleaseDetails extends PureComponent {
                 <DetailBox
                   alignItems="flex-start"
                   border="1px solid white"
-                  padding="0 3.5rem"
+                  padding="1rem 2rem"
+                  margin="0 0 0 1rem"
+                  width="50rem"
                 >
                   <ReleaseText fontSize="2rem" borderBottom="1px solid white">
                     RATINGS
                   </ReleaseText>
-                  <ReleaseText>IMDB: {release.imdbRating}</ReleaseText>
+                  <ReleaseText fontSize="1.6rem">
+                    IMDB: {release.imdbRating}
+                  </ReleaseText>
                   {release.omdbRatings &&
                     release.omdbRatings.map(rating => (
-                      <ReleaseText key={rating.Source}>
+                      <ReleaseText fontSize="1.6rem" key={rating.Source}>
                         {rating.Source}: {rating.Value}
                       </ReleaseText>
                     ))}
